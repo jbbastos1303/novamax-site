@@ -1,0 +1,843 @@
+/* galeria.module.css - versão completa (sem sticky) */
+/* Melhoria: evita corte de cantos, safe-area, overflow visível, foco acessível, responsividade */
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Open+Sans:wght@400;600&display=swap');
+
+:root {
+  --primary-color: #2e7d32;
+  --primary-dark: #1b5e20;
+  --accent: #ff6a00;
+  --bg: #ffffff;
+  --muted: #666;
+  --chip-shadow: rgba(11,18,32,0.06);
+  --chip-shadow-hover: rgba(11,18,32,0.09);
+  --filterbar-radius: 12px;
+}
+
+/* Container geral */
+.container {
+  padding: 3.5rem 1rem;
+  padding-left: calc(1rem + env(safe-area-inset-left, 0px));
+  padding-right: calc(1rem + env(safe-area-inset-right, 0px));
+  max-width: 1200px;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+/* Títulos e descrição */
+.title {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 2rem;
+  color: var(--primary-dark);
+  margin: 0 0 .5rem;
+  font-weight: 700;
+}
+
+.description {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 1rem;
+  color: #444;
+  max-width: 900px;
+  margin: 0 0 1.25rem;
+  line-height: 1.6;
+}
+
+/* ===== FilterBar ===== */
+.filterBar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin: 0 0 1rem 0;
+
+  /* usa max() para não aplicar um padding maior que o necessário */
+  padding: 
+    max(.6rem, env(safe-area-inset-top, .6rem))
+    max(.9rem, env(safe-area-inset-right, .9rem))
+    max(.6rem, env(safe-area-inset-bottom, .6rem))
+    max(.9rem, env(safe-area-inset-left, .9rem));
+
+  /* garante espaço mínimo para os chips (evita corte vertical) */
+  min-height: 64px;
+  box-sizing: border-box;
+
+  background: linear-gradient(180deg, rgba(255,255,255,0.98), rgba(250,250,250,0.95));
+  border-radius: var(--filterbar-radius, 12px);
+  box-shadow: 0 8px 28px rgba(11,18,32,0.07);
+  border: 1px solid rgba(11,18,32,0.04);
+
+  /* permite sombras e transform sem corte e garante sobreposição */
+  overflow: visible;
+  position: relative;
+  z-index: 50;
+}
+
+/* reforço: garantir que o pai imediato não esteja cortando (se existir overflow:hidden) */
+.filterBar-wrapper, /* caso você tenha um wrapper */ 
+.filterBar {
+  overflow: visible !important;
+}
+
+/* Chips: rolagem horizontal touch-friendly, padding lateral para evitar corte */
+.chips {
+  display: flex;
+  gap: .5rem;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  padding-bottom: .25rem;
+  padding-left: .25rem;
+  padding-right: .25rem;
+  margin: 0 -0.25rem; /* compensa padding para alinhamento com layout */
+  align-items: center;
+}
+
+/* Botão de colapso (toggle) - escondido em desktop, visível em mobile */
+.filterToggle {
+  display: none;
+  background: transparent;
+  border: 0;
+  font-weight: 600;
+  color: var(--primary-dark);
+  cursor: pointer;
+  align-items: center;
+  gap: .5rem;
+}
+
+/* Chip padrão */
+.chip {
+  appearance: none;
+  -webkit-appearance: none;
+  border: 0;
+  background: var(--bg);
+  color: #333;
+  padding: .45rem .9rem;
+  border-radius: 999px;
+  box-shadow: 0 2px 8px var(--chip-shadow);
+  cursor: pointer;
+  font-weight: 600;
+  font-size: .95rem;
+  transition: transform .12s ease, box-shadow .12s ease, background .12s ease;
+  display: inline-flex;
+  gap: .5rem;
+  align-items: center;
+  border: 1px solid rgba(11,18,32,0.04);
+  transform-origin: center;
+  will-change: transform, box-shadow;
+  outline-offset: 4px;
+}
+
+/* Hover e foco mais sutis para evitar extrapolação excessiva */
+.chip:hover {
+  transform: translateY(-3px) scale(1.01);
+  box-shadow: 0 10px 22px var(--chip-shadow-hover);
+}
+.chip:focus {
+  outline: 3px solid rgba(46,125,50,0.18);
+  outline-offset: 4px;
+}
+
+/* Estado ativo do chip */
+/* 1) Evita que o chip ativo seja deslocado para cima (evita corte) */
+.chipActive {
+  transform: translateY(0) !important;   /* não sobe */
+  margin-top: 0 !important;
+  z-index: 20;                            /* fica acima da barra */
+  position: relative;
+  border-radius: 999px;
+  /* mantém destaque visual sem extrapolar */
+  box-shadow: 0 8px 26px rgba(255,106,0,0.10);
+  border: 1px solid rgba(255,106,0,0.95);
+  background: linear-gradient(90deg, #fff7f0, #fff);
+}
+
+/* 2) Garante espaço interno suficiente no chip ativo (evita corte superior) */
+.chipActive,
+.chip {
+  box-sizing: border-box;
+  min-height: 44px;
+  padding-top: .45rem;
+  padding-bottom: .45rem;
+  line-height: normal;    /* evita conflito com resets globais */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* 3) Se houver foco, usar outline sem deslocar o elemento */
+.chip:focus, .chipActive:focus {
+  outline: 3px solid rgba(46,125,50,0.18);
+  outline-offset: 4px;
+  transform: none;
+}
+
+/* Controles (search, sort, counter) */
+.controls {
+  display: flex;
+  gap: .5rem;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+/* Search */
+.searchWrap { display: inline-block; }
+.search {
+  padding: .5rem .75rem;
+  border-radius: 8px;
+  border: 1px solid #e6eef6;
+  min-width: 180px;
+  font-size: .95rem;
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(11,18,32,0.03);
+}
+
+/* Sort */
+.sortWrap { display: inline-block; }
+.sort {
+  padding: .45rem .6rem;
+  border-radius: 8px;
+  border: 1px solid #e6eef6;
+  background: #fff;
+  font-size: .95rem;
+  box-shadow: 0 2px 8px rgba(11,18,32,0.03);
+}
+
+/* Counter */
+.counter {
+  color: var(--muted);
+  font-weight: 600;
+  padding-left: .5rem;
+  display: inline-flex;
+  align-items: baseline;
+  gap: .25rem;
+}
+.counterNumber { font-size: 1.05rem; color: var(--primary-dark); }
+
+/* ===== Grid da galeria ===== */
+.grid {
+  display: grid;
+  gap: .6rem;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  margin-top: .5rem;
+}
+
+/* Item */
+.item {
+  position: relative;
+  height: 140px;
+  border-radius: 8px;
+  overflow: hidden;
+  cursor: pointer;
+  background: #f6f6f6;
+  transition: transform .18s ease, box-shadow .18s ease;
+  display: block;
+  will-change: transform;
+  box-shadow: 0 6px 18px rgba(11,18,32,0.04);
+}
+.item:hover { transform: translateY(-6px); box-shadow: 0 18px 40px rgba(11,18,32,0.10); }
+
+.thumb { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+/* Badge de vídeo */
+.videoBadge {
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  background: rgba(0,0,0,0.6);
+  color: #fff;
+  padding: .35rem .5rem;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  gap: .35rem;
+  font-size: .85rem;
+  backdrop-filter: blur(4px);
+}
+
+/* Empty state */
+.emptyState {
+  padding: 2rem;
+  text-align: center;
+  color: var(--muted);
+  grid-column: 1 / -1;
+}
+
+/* ===== Seções da galeria ===== */
+.gallerySection {
+  margin-bottom: 2rem;
+  padding-top: .5rem;
+  padding-bottom: .5rem;
+}
+
+/* Cabeçalho da seção: título + contador */
+.sectionHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: .75rem;
+}
+
+.sectionTitle {
+  font-size: 1.25rem;
+  margin: 0;
+  color: var(--primary-dark, #1b5e20);
+  font-weight: 700;
+}
+
+.sectionSubtitle {
+  margin: 0;
+  color: #666;
+  font-size: .95rem;
+  margin-top: .25rem;
+}
+
+/* contador à direita */
+.sectionMeta {
+  display: inline-flex;
+  align-items: baseline;
+  gap: .25rem;
+  color: #666;
+  font-weight: 600;
+}
+
+.sectionCount {
+  font-size: 1.05rem;
+  color: var(--primary-dark, #1b5e20);
+}
+
+/* divisor entre seções */
+.sectionDivider {
+  border: 0;
+  height: 1px;
+  background: linear-gradient(90deg, rgba(0,0,0,0.06), rgba(0,0,0,0.02));
+  margin-top: 1rem;
+  margin-bottom: 1.25rem;
+  border-radius: 2px;
+}
+
+/* Badge que indica o filtro ativo */
+.activeFilterBadge {
+  display: inline-flex;
+  gap: .75rem;
+  align-items: center;
+  background: rgba(46,125,50,0.06);
+  color: var(--primary-dark);
+  padding: .45rem .75rem;
+  border-radius: 999px;
+  margin-bottom: 1rem;
+  border: 1px solid rgba(46,125,50,0.08);
+  font-weight: 600;
+  font-size: .95rem;
+  box-shadow: 0 6px 18px rgba(11,18,32,0.03);
+}
+
+/* Texto dentro do badge */
+.activeFilterLabel { display: inline-block; color: var(--primary-dark); }
+
+/* Botão para limpar o filtro (mostrar todas) */
+.clearFilterBtn {
+  appearance: none;
+  -webkit-appearance: none;
+  border: 0;
+  background: transparent;
+  color: var(--primary-dark);
+  padding: .25rem .5rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: .9rem;
+  transition: background .12s ease, color .12s ease;
+}
+
+.clearFilterBtn:hover {
+  background: rgba(46,125,50,0.08);
+}
+
+/* Show all button wrapper dentro da grid */
+.showAllWrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 140px;
+  border-radius: 8px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.98), rgba(250,250,250,0.95));
+  box-shadow: 0 6px 18px rgba(11,18,32,0.04);
+  border: 1px dashed rgba(11,18,32,0.04);
+}
+
+/* Botão Mostrar todos */
+.showAllBtn {
+  appearance: none;
+  -webkit-appearance: none;
+  border: 0;
+  background: var(--primary-color);
+  color: #fff;
+  padding: .6rem 1rem;
+  border-radius: 999px;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 8px 20px rgba(46,125,50,0.12);
+  transition: transform .12s ease, box-shadow .12s ease, background .12s ease;
+}
+.showAllBtn:hover { transform: translateY(-3px); box-shadow: 0 12px 30px rgba(46,125,50,0.14); }
+
+/* Modal overlay */
+.modalOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(11,18,32,0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 200;
+  padding: 1.25rem;
+}
+
+/* Modal content */
+.modalContent {
+  width: 100%;
+  max-width: 1100px;
+  max-height: 90vh;
+  background: #fff;
+  border-radius: 12px;
+  overflow: auto;
+  box-shadow: 0 20px 60px rgba(11,18,32,0.25);
+  padding: 1rem;
+  box-sizing: border-box;
+}
+
+/* Modal header */
+.modalHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: .75rem;
+}
+.modalTitle { margin: 0; font-size: 1.125rem; color: var(--primary-dark); }
+.modalClose {
+  border: 0;
+  background: transparent;
+  font-size: 1.25rem;
+  cursor: pointer;
+}
+
+/* Modal grid (todas as imagens) */
+.modalGrid {
+  display: grid;
+  gap: .6rem;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+}
+.modalItem {
+  border-radius: 8px;
+  overflow: hidden;
+  background: #f6f6f6;
+  cursor: pointer;
+  position: relative;
+  height: 140px;
+  display: block;
+}
+.modalItem img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+/* Lightbox overlay */
+.lightboxOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(11,18,32,0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 300;
+  padding: 1rem;
+}
+.lightboxContent {
+  max-width: 95%;
+  max-height: 95%;
+  position: relative;
+}
+.lightboxImage { max-width: 100%; max-height: 80vh; display: block; margin: 0 auto; }
+.lightboxVideo { max-width: 100%; max-height: 80vh; display: block; margin: 0 auto; }
+.lightboxClose {
+  position: absolute;
+  right: -8px;
+  top: -8px;
+  background: #fff;
+  border-radius: 999px;
+  border: 0;
+  padding: .25rem .5rem;
+  cursor: pointer;
+  font-weight: 700;
+}
+
+/* Envolve a grid para permitir posicionamento absoluto do botão flutuante */
+.gridWrap {
+  position: relative;
+}
+
+/* Botão flutuante compacto (ao lado direito embaixo da última imagem) */
+.showAllFloatingBtn {
+  position: absolute;
+  right: 8px;
+  bottom: 8px;
+  transform: translateY(0);
+  appearance: none;
+  -webkit-appearance: none;
+  border: 0;
+  background: rgba(46,125,50,0.95);
+  color: #fff;
+  padding: .45rem .7rem;
+  border-radius: 999px;
+  font-weight: 700;
+  font-size: .85rem;
+  cursor: pointer;
+  box-shadow: 0 8px 20px rgba(46,125,50,0.12);
+  transition: transform .12s ease, box-shadow .12s ease, opacity .12s ease;
+  z-index: 10;
+}
+.showAllFloatingBtn:hover { transform: translateY(-3px); box-shadow: 0 12px 30px rgba(46,125,50,0.16); }
+
+/* Ajuste para telas pequenas: desloca o botão para dentro do fluxo se necessário */
+@media (max-width: 640px) {
+  .showAllFloatingBtn {
+    right: 6px;
+    bottom: 6px;
+    padding: .4rem .6rem;
+    font-size: .82rem;
+  }
+}
+
+/* Modal overlay e conteúdo (modalGrid é rolável com infinite scroll) */
+.modalOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(11,18,32,0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 200;
+  padding: 1.25rem;
+}
+
+.modalContent {
+  width: 100%;
+  max-width: 1100px;
+  max-height: 90vh;
+  background: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(11,18,32,0.25);
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+
+/* Cabeçalho da modal */
+.modalHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  border-bottom: 1px solid rgba(0,0,0,0.04);
+}
+.modalTitle { margin: 0; font-size: 1.125rem; color: var(--primary-dark); }
+.modalClose {
+  border: 0;
+  background: transparent;
+  font-size: 1.25rem;
+  cursor: pointer;
+}
+
+/* Grid dentro da modal: rolável, com altura limitada */
+.modalGrid {
+  padding: 1rem;
+  display: grid;
+  gap: .6rem;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  overflow: auto;
+  flex: 1 1 auto; /* ocupa espaço disponível e permite scroll */
+}
+
+/* Itens da modal */
+.modalItem {
+  border-radius: 8px;
+  overflow: hidden;
+  background: #f6f6f6;
+  cursor: pointer;
+  position: relative;
+  height: 140px;
+  display: block;
+}
+.modalItem img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+/* Footer da modal com botão carregar mais (fallback) */
+.modalFooter {
+  padding: .75rem 1rem;
+  border-top: 1px solid rgba(0,0,0,0.04);
+  display: flex;
+  justify-content: center;
+}
+.loadMoreBtn {
+  appearance: none;
+  -webkit-appearance: none;
+  border: 0;
+  background: var(--primary-color);
+  color: #fff;
+  padding: .6rem 1rem;
+  border-radius: 999px;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 8px 20px rgba(46,125,50,0.12);
+}
+
+/* Lightbox overlay (mantive as regras anteriores, mas garanto z-index maior) */
+.lightboxOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(11,18,32,0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 300;
+  padding: 1rem;
+}
+.lightboxContent {
+  max-width: 95%;
+  max-height: 95%;
+  position: relative;
+}
+.lightboxImage { max-width: 100%; max-height: 80vh; display: block; margin: 0 auto; }
+.lightboxVideo { max-width: 100%; max-height: 80vh; display: block; margin: 0 auto; }
+.lightboxClose {
+  position: absolute;
+  right: -8px;
+  top: -8px;
+  background: #fff;
+  border-radius: 999px;
+  border: 0;
+  padding: .25rem .5rem;
+  cursor: pointer;
+  font-weight: 700;
+}
+
+/* Botão flutuante compacto (já incluído antes) - mantido */
+.showAllFloatingBtn {
+  position: absolute;
+  right: 8px;
+  bottom: 8px;
+  appearance: none;
+  -webkit-appearance: none;
+  border: 0;
+  background: rgba(46,125,50,0.95);
+  color: #fff;
+  padding: .45rem .7rem;
+  border-radius: 999px;
+  font-weight: 700;
+  font-size: .85rem;
+  cursor: pointer;
+  box-shadow: 0 8px 20px rgba(46,125,50,0.12);
+  transition: transform .12s ease, box-shadow .12s ease, opacity .12s ease;
+  z-index: 10;
+}
+
+/* Lightbox nav buttons */
+.lightboxOverlay { z-index: 300; }
+.lightboxContent {
+  max-width: 95%;
+  max-height: 95%;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.lightboxImage, .lightboxVideo {
+  max-width: 100%;
+  max-height: 80vh;
+  display: block;
+  margin: 0 auto;
+}
+
+/* Botões de navegação (prev/next) */
+.lightboxNav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 48px;
+  height: 48px;
+  border-radius: 999px;
+  border: 0;
+  background: rgba(0,0,0,0.45);
+  color: #fff;
+  font-size: 28px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+  transition: background .12s ease, transform .12s ease;
+  z-index: 310;
+}
+.lightboxNav:hover { background: rgba(0,0,0,0.6); transform: translateY(-50%) scale(1.03); }
+
+.lightboxPrev { left: 12px; }
+.lightboxNext { right: 12px; }
+
+/* Close button */
+.lightboxClose {
+  position: absolute;
+  right: -8px;
+  top: -8px;
+  background: #fff;
+  border-radius: 999px;
+  border: 0;
+  padding: .25rem .5rem;
+  cursor: pointer;
+  font-weight: 700;
+  z-index: 320;
+}
+
+/* Indicador de posição no lightbox */
+.lightboxInner {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.lightboxCounter {
+  position: absolute;
+  bottom: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0,0,0,0.55);
+  color: #fff;
+  padding: .25rem .6rem;
+  border-radius: 999px;
+  font-weight: 700;
+  font-size: .95rem;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.4);
+  z-index: 315;
+}
+
+/* Focus visible (melhora acessibilidade) */
+.modalContent :focus, .lightboxContent :focus, .modalContent button:focus, .lightboxContent button:focus {
+  outline: 3px solid rgba(46,125,50,0.18);
+  outline-offset: 3px;
+}
+/* ===== Painel que agrupa FilterBar + MediaGallery ===== */
+.galleryPanel {
+  background: linear-gradient(180deg, #ffffff, #fbfcfd);
+  border-radius: 14px;
+  padding: 1rem;
+  box-shadow: 0 12px 40px rgba(11,18,32,0.06);
+  border: 1px solid rgba(11,18,32,0.04);
+  margin-top: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  box-sizing: border-box;
+}
+
+/* Topo do painel: área do filtro (pode ficar sticky) */
+.panelTop {
+  position: relative;
+  z-index: 5;
+}
+
+/* Corpo do painel: galeria */
+.panelBody {
+  padding-top: .25rem;
+}
+
+/* Separador visual entre filtro e galeria (opcional) */
+.panelDivider {
+  height: 1px;
+  background: linear-gradient(90deg, rgba(0,0,0,0.04), rgba(0,0,0,0.01));
+  margin: .5rem 0;
+  border-radius: 2px;
+}
+
+/* Sticky FilterBar: ativa em telas maiores para manter o filtro visível */
+@media (min-width: 900px) {
+  .panelTop {
+    position: sticky;
+    top: calc(1rem + env(safe-area-inset-top, 0px)); /* respeita safe-area */
+    z-index: 60;
+    background: transparent; /* FilterBar já tem fundo */
+    padding-bottom: .5rem;
+  }
+}
+
+/* Ajustes visuais menores para integração com o painel */
+.filterBar {
+  background: transparent; /* deixa o gradiente do painel visível */
+  box-shadow: none;        /* evita sombra dupla */
+  border: 0;               /* remove borda duplicada */
+  padding: 0;              /* padding controlado pelo painel */
+}
+
+/* Reaplicar estilo interno dos chips mantendo consistência */
+.chips { padding-left: .25rem; padding-right: .25rem; }
+
+/* Em mobile, painel ocupa largura total com padding reduzido */
+@media (max-width: 640px) {
+  .galleryPanel {
+    padding: .75rem;
+    border-radius: 10px;
+  }
+  .panelTop { position: relative; top: 0; }
+}
+
+/* Pequeno ajuste para o título da página quando o painel está presente */
+.title { margin-bottom: .25rem; }
+
+/* Ajuste para lightbox inner em mobile */
+@media (max-width: 640px) {
+  .lightboxNav { width: 40px; height: 40px; font-size: 22px; }
+  .lightboxCounter { font-size: .9rem; bottom: 10px; }
+}
+
+/* Em telas pequenas, badge ocupa toda a largura e botão fica à direita */
+@media (max-width: 640px) {
+  .activeFilterBadge {
+    width: 100%;
+    justify-content: space-between;
+    padding: .5rem .75rem;
+  }
+  .clearFilterBtn { font-size: .88rem; padding: .25rem .45rem; }
+}
+
+
+/* Ajuste: reduzir gap entre grid e título em telas pequenas */
+@media (max-width: 640px) {
+  .sectionHeader { flex-direction: column; align-items: flex-start; gap: .35rem; }
+  .sectionMeta { align-self: flex-end; }
+}
+
+/* Responsividade */
+@media (max-width: 900px) {
+  .grid { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); }
+  .item { height: 120px; }
+  .search { min-width: 120px; }
+}
+
+@media (max-width: 640px) {
+  /* reduz padding e mostra toggle no mobile */
+  .filterBar { padding: .5rem .6rem; border-radius: 10px; }
+  .chips { padding-left: .15rem; padding-right: .15rem; margin: 0 -0.15rem; }
+  .controls { display: none; } /* esconde busca/ordenar para economizar espaço */
+  .filterToggle { display: inline-flex; align-items: center; gap: .4rem; }
+  .search { min-width: 80px; }
+}
+
+@media (max-width: 480px) {
+  .grid { grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); }
+  .item { height: 100px; }
+  .controls { width: 100%; justify-content: space-between; }
+  .search { flex: 1; min-width: 80px; }
+}
+
+/* Forçar preservação de transform para evitar recortes em alguns navegadores */
+.filterBar, .filterBar * {
+  -webkit-transform-style: preserve-3d;
+  transform-style: preserve-3d;
+}

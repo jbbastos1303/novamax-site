@@ -1,0 +1,24 @@
+/* obras.module.css */
+.container { padding: 3.5rem 1rem; max-width: 1200px; margin: 0 auto; }
+.title { font-size: 2rem; color: #1b5e20; margin: 0 0 .75rem; font-weight: 700; }
+.description { font-size: 1rem; color: #444; max-width: 900px; margin: 0 0 1.5rem; line-height: 1.6; }
+.projectsGrid { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); margin-top: 1.25rem; }
+.projectCard { background: #fff; border-radius: 8px; overflow: hidden; box-shadow: 0 6px 18px rgba(11,18,32,0.06); display: flex; flex-direction: column; transition: transform .18s ease, box-shadow .18s ease; }
+.projectCard:hover { transform: translateY(-6px); box-shadow: 0 12px 30px rgba(11,18,32,0.10); }
+.projectThumb { width: 100%; height: 180px; object-fit: cover; display: block; background: #f4f4f4; }
+.projectBody { padding: 1rem; display: flex; flex-direction: column; gap: .5rem; }
+.projectMeta { color: #666; font-size: .95rem; margin: 0; }
+.projectScope { color: #333; font-size: .95rem; margin-top: .5rem; }
+.actions { display: flex; gap: .5rem; margin-top: .75rem; flex-wrap: wrap; }
+.projectDrawer { position: fixed; inset: 0; background: rgba(11,18,32,0.6); display: flex; align-items: center; justify-content: center; z-index: 1200; padding: 1rem; }
+.drawerInner { width: 100%; max-width: 980px; background: #fff; border-radius: 10px; overflow: auto; max-height: 90vh; }
+.drawerTop { display: flex; gap: 1rem; padding: 1rem; }
+.drawerMainImage { flex: 1; min-height: 260px; background: #eee; border-radius: 6px; overflow: hidden; position: relative; }
+.drawerSide { width: 340px; padding: 1rem; }
+.drawerGallery { padding: 1rem; display: grid; gap: .5rem; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); }
+.drawerThumb { height: 100px; object-fit: cover; border-radius: 6px; cursor: pointer; background: #f6f6f6; }
+.btnSmall { padding: .4rem .6rem; font-size: .9rem; border-radius: 6px; cursor: pointer; border: 1px solid transparent; }
+.btnPrimary { background: #ff6a00; color: #fff; border-color: #ff6a00; }
+.btnGhost { background: transparent; color: #0b1220; border: 1px solid #e6eef6; }
+.btnOutline { background: transparent; color: #ff6a00; border: 2px solid #ff6a00; }
+@media (max-width: 900px) { .drawerTop { flex-direction: column; } .drawerSide { width: 100%; } .projectThumb { height: 140px; } }

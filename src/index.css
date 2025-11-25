@@ -11,3 +11,23 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+/* ===== Adicional para Obras e Galeria ===== */
+.projects-grid { margin-top: 1rem; }
+.project-card img, .project-card .project-thumb { border-radius: 6px; }
+
+.gallery-filters button.active {
+  border-color: #ff6a00;
+  background: linear-gradient(90deg,#fff7f0,#fff);
+}
+
+.gallery-grid { margin-top: .5rem; }
+.gallery-item { border-radius: 6px; overflow: hidden; }
+
+.lightbox-overlay img, .lightbox-overlay video {
+  display: block;
+  max-width: 100%;
+}
+
+/* botões pequenos */
+.btn-sm { padding: .4rem .6rem; font-size: .9rem; border-radius: 6px; }
