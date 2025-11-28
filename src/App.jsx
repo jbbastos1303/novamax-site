@@ -207,14 +207,100 @@ function ServicesSection() {
 }
 
 function ContactSection() {
+  const addressLine1 = "Avenida Marechal Deodoro, 354 sala 104";
+  const addressLine2 = "Centro, Duque de Caxias - RJ";
+  const phone = "+55 21 96475-8679";
+  const email = "comercial@novamaxtransportes.com.br";
+
+  // formata número para o link do WhatsApp (apenas dígitos, com código do país)
+  const phoneDigits = phone.replace(/\D/g, "");
+  const waText = encodeURIComponent("Olá, gostaria de mais informações sobre locação de equipamentos.");
+  const waHref = `https://wa.me/${phoneDigits}?text=${waText}`;
+
+  // mailto com subject e body padrão (codificados)
+  const mailSubject = "Orçamento de Locação";
+  const mailBody = `Olá,\n\nGostaria de solicitar um orçamento para locação de equipamentos.\n\nPeríodo desejado:\nEquipamentos:\nLocal da obra:\n\nObrigado.`;
+  const mailtoHref = `mailto:${email}?subject=${encodeURIComponent(mailSubject)}&body=${encodeURIComponent(mailBody)}`;
+
   return (
     <section id="contato" className="contact-section">
-      <div className="container text-center">
-        <h2 className="section-title text-light">Fale Conosco</h2>
-        <p className="section-description text-light">Pronto para transformar seu projeto? Entre em contato.</p>
-        <div className="cta-group">
-          <a href="mailto:contato@novamax.com.br" className="btn btn-secondary btn-large">✉️ Enviar um E-mail</a>
-          <a href="tel:+5511999999999" className="btn btn-outline-light btn-large">📞 Ligue Agora</a>
+      <div className="container contact-container">
+        <div className="contact-grid">
+          <div className="contact-info">
+            <h2 className="section-title text-light">Fale Conosco</h2>
+            <p className="section-description text-light">Pronto para transformar seu projeto? Entre em contato.</p>
+
+            <address className="company-address">
+              <strong className="company-name">Nova Max Transportes</strong>
+              <div className="company-street">{addressLine1}</div>
+              <div className="company-city">{addressLine2}</div>
+            </address>
+
+            <div className="contact-actions">
+              <a
+                href={mailtoHref}
+                className="contact-icon-btn"
+                aria-label={`Enviar email para ${email}`}
+                title={`Enviar email para ${email}`}
+                onClick={() => { window.location.href = mailtoHref; }}
+              >
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false">
+                  <path d="M3 6.5A2.5 2.5 0 015.5 4h13A2.5 2.5 0 0121 6.5v11A2.5 2.5 0 0118.5 20h-13A2.5 2.5 0 013 17.5v-11z" stroke="#fff" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/>
+                  <path d="M21 6.5l-9 6-9-6" stroke="#fff" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+
+                <span className="sr-only">Enviar email para {email}</span>
+                <span className="icon-tooltip" role="tooltip">Enviar email</span>
+              </a>
+
+              <a
+                href={waHref}
+                className="contact-icon-btn contact-whatsapp"
+                aria-label={`Abrir WhatsApp para ${phone}`}
+                title={`Abrir WhatsApp para ${phone}`}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {/* WhatsApp monocromático branco */}
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false" role="img" aria-label="WhatsApp">
+                  <path d="M20.52 3.48A11.94 11.94 0 0012 0C5.373 0 .001 5.373 0 12c0 2.11.55 4.17 1.6 6.01L0 24l6.2-1.58A11.94 11.94 0 0012 24c6.627 0 12-5.373 12-12 0-3.2-1.25-6.2-3.48-8.52z" fill="transparent"/>
+                  <path d="M17.1 14.1c-.3-.15-1.8-.9-2.1-1.05-.3-.15-.5-.15-.7.05-.2.2-.8.9-1 1.15-.2.25-.4.25-.7.1-.3-.15-1.1-.45-2-1.45-.9-.95-1.5-2.1-1.7-2.4-.2-.3 0-.45.1-.6.1-.15.3-.35.5-.55.2-.2.25-.35.35-.55.1-.2 0-.45 0-.65 0-.2-.6-1.5-.8-2.05-.2-.55-.45-.45-.6-.45-.15 0-.35 0-.55 0-.2 0-.6.1-.9.45-.3.35-1 1-1 2.4 0 1.4 1 2.8 1.15 3 .15.2 1.95 3 4.8 4.25 2.85 1.25 2.95 1 3.5 1 .55 0 1.6-.6 1.85-1.4.25-.8.25-1.5.15-1.65-.1-.15-.35-.25-.65-.4z" fill="#fff"/>
+                </svg>
+
+                <span className="sr-only">Abrir WhatsApp para {phone}</span>
+                <span className="icon-tooltip" role="tooltip">Abrir WhatsApp</span>
+              </a>
+            </div>
+
+            <p className="contact-note text-light">
+              Horário de atendimento: Segunda a Sexta, 08:00–18:00.
+            </p>
+          </div>
+
+          <div className="contact-map" aria-hidden="false">
+            <div className="map-wrapper">
+              <iframe
+                title="Localização Nova Max Transportes"
+                src="https://www.google.com/maps?q=Avenida%20Marechal%20Deodoro%2C%20354%20sala%20104%20-%20Centro%2C%20Duque%20de%20Caxias%20-%20RJ&output=embed"
+                width="600"
+                height="450"
+                style={{ border: 0 }}
+                allowFullScreen=""
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+              />
+            </div>
+
+            <p className="map-link">
+              <a
+                href="https://www.google.com/maps/search/?api=1&query=Avenida%20Marechal%20Deodoro%2C%20354%20sala%20104%20-%20Centro%2C%20Duque%20de%20Caxias%20-%20RJ"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Abrir no Google Maps
+              </a>
+            </p>
+          </div>
         </div>
       </div>
     </section>
