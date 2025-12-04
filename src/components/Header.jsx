@@ -1,7 +1,7 @@
 // src/components/Header.jsx
 import React from "react";
 import { Link } from "react-router-dom";
-import logoNovaMax from "../assets/logo.png"; // ajuste caminho se necessário
+import logoNovaMax from "../assets/logoVerdeEscuro.png"; // ajuste caminho se necessário
 
 export default function Header() {
   return (

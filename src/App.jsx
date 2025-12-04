@@ -3,7 +3,7 @@ import React, { Suspense, lazy } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import ScrollToHash from "./components/ScrollToHash";
 import "./App.css"; // CSS global importado apenas aqui
-
+import { FaWhatsapp } from "react-icons/fa";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import heroVideo from "./assets/hero-video.mp4"; // ajuste caminho se necessário
@@ -211,6 +211,7 @@ function ContactSection() {
   const addressLine2 = "Centro, Duque de Caxias - RJ";
   const phone = "+55 21 96475-8679";
   const email = "comercial@novamaxtransportes.com.br";
+  const email2 = "novamaxtransportes@outlook.com";
 
   // formata número para o link do WhatsApp (apenas dígitos, com código do país)
   const phoneDigits = phone.replace(/\D/g, "");
@@ -221,6 +222,7 @@ function ContactSection() {
   const mailSubject = "Orçamento de Locação";
   const mailBody = `Olá,\n\nGostaria de solicitar um orçamento para locação de equipamentos.\n\nPeríodo desejado:\nEquipamentos:\nLocal da obra:\n\nObrigado.`;
   const mailtoHref = `mailto:${email}?subject=${encodeURIComponent(mailSubject)}&body=${encodeURIComponent(mailBody)}`;
+  const mailtoHref2 = `mailto:${email2}?subject=${encodeURIComponent(mailSubject)}&body=${encodeURIComponent(mailBody)}`;
 
   return (
     <section id="contato" className="contact-section">
@@ -234,9 +236,28 @@ function ContactSection() {
               <strong className="company-name">Nova Max Transportes</strong>
               <div className="company-street">{addressLine1}</div>
               <div className="company-city">{addressLine2}</div>
+              <div className="company-city">Telefones: (21) 3845-1506 / (21) 2759-5098</div>
+              <div className="company-city" ><a
+                href={mailtoHref} style={{ color: "#fff" }}>comercial@novamaxtransportes.com.br</a></div>
+              <div className="company-city" ><a
+                href={mailtoHref2} style={{ color: "#fff" }}>novamaxtransportes@outlook.com</a></div>
             </address>
 
             <div className="contact-actions">
+              <a
+                href={waHref}
+                className="contact-icon-btn contact-whatsapp"
+                aria-label={`Abrir WhatsApp para ${phone}`}
+                title={`Abrir WhatsApp para ${phone}`}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {/* Ícone WhatsApp monocromático branco */}
+                <FaWhatsapp size={18} color="#fff" aria-hidden="true" />
+
+                <span className="sr-only">Abrir WhatsApp para {phone}</span>
+                <span className="icon-tooltip" role="tooltip">Abrir WhatsApp</span>
+              </a>
               <a
                 href={mailtoHref}
                 className="contact-icon-btn"
@@ -253,23 +274,6 @@ function ContactSection() {
                 <span className="icon-tooltip" role="tooltip">Enviar email</span>
               </a>
 
-              <a
-                href={waHref}
-                className="contact-icon-btn contact-whatsapp"
-                aria-label={`Abrir WhatsApp para ${phone}`}
-                title={`Abrir WhatsApp para ${phone}`}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                {/* WhatsApp monocromático branco */}
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false" role="img" aria-label="WhatsApp">
-                  <path d="M20.52 3.48A11.94 11.94 0 0012 0C5.373 0 .001 5.373 0 12c0 2.11.55 4.17 1.6 6.01L0 24l6.2-1.58A11.94 11.94 0 0012 24c6.627 0 12-5.373 12-12 0-3.2-1.25-6.2-3.48-8.52z" fill="transparent"/>
-                  <path d="M17.1 14.1c-.3-.15-1.8-.9-2.1-1.05-.3-.15-.5-.15-.7.05-.2.2-.8.9-1 1.15-.2.25-.4.25-.7.1-.3-.15-1.1-.45-2-1.45-.9-.95-1.5-2.1-1.7-2.4-.2-.3 0-.45.1-.6.1-.15.3-.35.5-.55.2-.2.25-.35.35-.55.1-.2 0-.45 0-.65 0-.2-.6-1.5-.8-2.05-.2-.55-.45-.45-.6-.45-.15 0-.35 0-.55 0-.2 0-.6.1-.9.45-.3.35-1 1-1 2.4 0 1.4 1 2.8 1.15 3 .15.2 1.95 3 4.8 4.25 2.85 1.25 2.95 1 3.5 1 .55 0 1.6-.6 1.85-1.4.25-.8.25-1.5.15-1.65-.1-.15-.35-.25-.65-.4z" fill="#fff"/>
-                </svg>
-
-                <span className="sr-only">Abrir WhatsApp para {phone}</span>
-                <span className="icon-tooltip" role="tooltip">Abrir WhatsApp</span>
-              </a>
             </div>
 
             <p className="contact-note text-light">

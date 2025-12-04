@@ -6,33 +6,36 @@ import Lightbox from "./Lightbox";
 const projects = [
   {
     id: "obra-01",
-    title: "Terraplenagem Industrial - Plataforma A",
+    title: "Terraplenagem Industrial",
+    subtitle: "Plataforma A",
     location: "Região Sudeste",
     year: 2023,
     scope: "Cortes, aterros, compactação e preparação de plataforma industrial.",
     equipment: "Escavadeiras, pás carregadeiras, rolos compactadores, caminhões basculantes.",
-    thumb: "/images/obra1.jpg",
-    gallery: ["/images/obra1.jpg", "/images/obra1-2.jpg"]
+    thumb: "/images/obras/terraplanagem1.png",
+    gallery: ["/images/obras/terraplanagem1.png", "/images/obras/terraplanagem2.png"]
   },
   {
     id: "obra-02",
-    title: "Drenagem e Pavimentação - Acesso Logístico",
+    title: "Drenagem e Pavimentação",
+    subtitle: "Acesso Logístico",
     location: "Região Sul",
     year: 2022,
     scope: "Sistema de drenagem, subleito e aplicação de CBUQ em acesso logístico.",
     equipment: "Motoniveladoras, compactadores, caminhões truck.",
-    thumb: "/images/obra2.jpg",
-    gallery: ["/images/obra2.jpg", "/images/obra2-2.jpg"]
+    thumb: "/images/obras/drenagem1.png",
+    gallery: ["/images/obras/drenagem1.png", "/images/obras/drenagem2.png"]
   },
   {
     id: "obra-03",
-    title: "Recomposição de Talude e Contenção",
+    title: "Recomposição de Talude",
+    subtitle: "Contenção",
     location: "Região Norte",
     year: 2024,
     scope: "Recomposição e estabilização de taludes com drenagem e revegetação.",
     equipment: "Tratores de esteira, escavadeiras, equipamentos de drenagem.",
-    thumb: "/images/obra3.jpg",
-    gallery: ["/images/obra3.jpg"]
+    thumb: "/images/obras/talude1.png",
+    gallery: ["/images/obras/talude1.png", "/images/obras/talude2.png"]
   }
 ];
 
@@ -63,15 +66,15 @@ export default function ProjectsGrid({ className }) {
             </div>
             <div style={{ padding: "1rem" }}>
               <h3 style={{ margin: "0 0 .5rem" }}>{p.title}</h3>
+              <h4 style={{ margin: "0 0 .5rem" }}>{p.subtitle}</h4>
               <p style={{ margin: 0, color: "#666", fontSize: ".95rem" }}>{p.location} • {p.year}</p>
               <p style={{ marginTop: ".75rem", color: "#444" }}>{p.scope}</p>
               <p style={{ marginTop: ".5rem", fontSize: ".95rem", color: "#333" }}><strong>Equipamentos:</strong> {p.equipment}</p>
 
               <div style={{ display: "flex", gap: ".5rem", marginTop: ".75rem", flexWrap: "wrap" }}>
-                <button className="btn btn-primary btn-sm" onClick={() => openProject(p)}>Ver detalhes</button>
-                <button className="btn btn-ghost btn-sm" onClick={() => openLightbox(p.thumb, "image")}>Ampliar foto</button>
+                <button className="btn btn-primary btn-sm" onClick={() => openProject(p)}>Detalhes</button>
                 {p.gallery && p.gallery.length > 1 && (
-                  <button className="btn btn-outline btn-sm" onClick={() => openLightbox(p.gallery[1], "image")}>Ver galeria</button>
+                  <button className="btn btn-outline btn-sm" onClick={() => openLightbox(p.gallery[1], "image")}>Galeria</button>
                 )}
               </div>
             </div>
