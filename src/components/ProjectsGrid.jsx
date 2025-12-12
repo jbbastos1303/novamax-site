@@ -1,5 +1,5 @@
 // src/components/ProjectsGrid.jsx
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Lightbox from "./Lightbox";
 
 /* Exemplo de dados */
@@ -41,19 +41,29 @@ const projects = [
 
 export default function ProjectsGrid({ className }) {
   const [active, setActive] = useState(null);
-  const [lightbox, setLightbox] = useState({ open: false, src: null, type: "image" });
+  const [lightbox, setLightbox] = useState({ open: false, list: [], index: 0 });
+
+  useEffect(() => {
+    if (!active) return;
+    function onKey(e) {
+      if (e.key === "Escape") setActive(null);
+    }
+    document.addEventListener("keydown", onKey);
+    return () => document.removeEventListener("keydown", onKey);
+  }, [active]);
 
   function openProject(project) {
     setActive(project);
     window.scrollTo({ top: 0, behavior: "smooth" });
   }
 
-  function openLightbox(src, type = "image") {
-    setLightbox({ open: true, src, type });
+  function openLightboxList(list = [], startIndex = 0) {
+    if (!Array.isArray(list) || list.length === 0) return;
+    setLightbox({ open: true, list, index: Math.max(0, Math.min(startIndex, list.length - 1)) });
   }
 
   function closeLightbox() {
-    setLightbox({ open: false, src: null, type: "image" });
+    setLightbox({ open: false, list: [], index: 0 });
   }
 
   return (
@@ -74,7 +84,7 @@ export default function ProjectsGrid({ className }) {
               <div style={{ display: "flex", gap: ".5rem", marginTop: ".75rem", flexWrap: "wrap" }}>
                 <button className="btn btn-primary btn-sm" onClick={() => openProject(p)}>Detalhes</button>
                 {p.gallery && p.gallery.length > 1 && (
-                  <button className="btn btn-outline btn-sm" onClick={() => openLightbox(p.gallery[1], "image")}>Galeria</button>
+                  <button className="btn btn-outline btn-sm" onClick={() => openLightboxList(p.gallery, 0)}>Galeria</button>
                 )}
               </div>
             </div>
@@ -86,7 +96,32 @@ export default function ProjectsGrid({ className }) {
         <div className="project-drawer" role="dialog" aria-modal="true" style={{
           position: "fixed", inset: 0, background: "rgba(11,18,32,0.6)", display: "flex", alignItems: "center", justifyContent: "center", zIndex: 1200, padding: "1rem"
         }}>
-          <div style={{ width: "100%", maxWidth: 980, background: "#fff", borderRadius: 10, overflow: "auto", maxHeight: "90vh" }}>
+          <div style={{ width: "100%", maxWidth: 980, background: "#fff", borderRadius: 10, overflow: "auto", maxHeight: "90vh", position: "relative" }}>
+            <button
+              aria-label="Fechar detalhes do projeto"
+              title="Fechar"
+              onClick={() => { setActive(null); }}
+              style={{
+                position: "absolute",
+                top: 8,
+                right: 8,
+                width: 36,
+                height: 36,
+                display: "inline-flex",
+                alignItems: "center",
+                justifyContent: "center",
+                borderRadius: 18,
+                border: "1px solid rgba(11,18,32,0.12)",
+                background: "rgba(11,18,32,0.04)",
+                color: "#0b1220",
+                fontSize: 18,
+                cursor: "pointer",
+                boxShadow: "0 2px 6px rgba(0,0,0,0.06)",
+                backdropFilter: "saturate(180%) blur(2px)"
+              }}
+            >
+              ×
+            </button>
             <div style={{ display: "flex", gap: "1rem", padding: "1rem" }}>
               <div style={{ flex: 1 }}>
                 <div style={{ width: "100%", height: 320, overflow: "hidden" }}>
@@ -101,7 +136,6 @@ export default function ProjectsGrid({ className }) {
 
                 <div style={{ marginTop: "1rem", display: "flex", gap: ".5rem", flexWrap: "wrap" }}>
                   <a className="btn btn-primary" href="#contato">Solicitar informações</a>
-                  <button className="btn btn-ghost" onClick={() => { setActive(null); }}>Fechar</button>
                 </div>
               </div>
             </div>
@@ -109,7 +143,7 @@ export default function ProjectsGrid({ className }) {
             {active.gallery && active.gallery.length > 0 && (
               <div style={{ padding: "1rem", display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(140px, 1fr))", gap: ".5rem" }}>
                 {active.gallery.map((src, i) => (
-                  <div key={i} style={{ height: 120, cursor: "pointer" }} onClick={() => openLightbox(src, "image")}>
+                  <div key={i} style={{ height: 120, cursor: "pointer" }} onClick={() => openLightboxList(active.gallery, i)}>
                     <img src={src} alt={`${active.title} ${i+1}`} style={{ width: "100%", height: "100%", objectFit: "cover", borderRadius: 6 }} />
                   </div>
                 ))}
@@ -119,7 +153,7 @@ export default function ProjectsGrid({ className }) {
         </div>
       )}
 
-      <Lightbox open={lightbox.open} src={lightbox.src} type={lightbox.type} onClose={closeLightbox} />
+      <Lightbox open={lightbox.open} list={lightbox.list} index={lightbox.index} onClose={closeLightbox} />
     </>
   );
 }

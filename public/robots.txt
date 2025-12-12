@@ -1,3 +1,10 @@
 # https://www.robotstxt.org/robotstxt.html
 User-agent: *
-Disallow:
+Allow: /
+
+# Evitar indexação de arquivos sensíveis ou de build (se existirem)
+Disallow: /admin/
+Disallow: /private/
+
+# Sitemap
+Sitemap: https://www.novamaxtransportes.com.br/sitemap.xml

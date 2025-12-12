@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
   <head>
     <meta charset="utf-8" />
     <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
@@ -7,8 +7,31 @@
     <meta name="theme-color" content="#000000" />
     <meta
       name="description"
-      content="Web site created using create-react-app"
+      content="Nova Max Transportes: terraplenagem, drenagem, pavimentação e logística. Frota própria, equipe qualificada e obras em todo o Brasil. Solicite orçamento."
     />
+    <meta name="robots" content="index,follow,max-snippet:-1,max-image-preview:large,max-video-preview:-1" />
+    <meta name="googlebot" content="index,follow" />
+    <link rel="canonical" href="https://www.novamaxtransportes.com.br/" />
+
+    <!-- Open Graph -->
+    <meta property="og:locale" content="pt_BR" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Nova Max Transportes" />
+    <meta property="og:description" content="Terraplenagem, drenagem, pavimentação e logística com frota própria e equipe qualificada." />
+    <meta property="og:url" content="https://www.novamaxtransportes.com.br/" />
+    <meta property="og:site_name" content="Nova Max Transportes" />
+    <meta property="og:image" content="https://www.novamaxtransportes.com.br/images/obras/terraplanagem1.png" />
+    <meta property="og:image:alt" content="Obras de terraplenagem Nova Max Transportes" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Nova Max Transportes" />
+    <meta name="twitter:description" content="Terraplenagem, drenagem, pavimentação e logística com frota própria e equipe qualificada." />
+    <meta name="twitter:image" content="https://www.novamaxtransportes.com.br/images/obras/terraplanagem1.png" />
+    <!-- CSP: permitir execução do app React (dev e prod). Em produção, considere remover 'unsafe-eval' e entradas localhost/ws. -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' blob:; connect-src 'self' https://www.novamaxtransportes.com.br http://localhost:* ws://localhost:*; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self' data:; media-src 'self' blob:; object-src 'none'; base-uri 'self'; frame-src https://www.google.com https://maps.google.com; frame-ancestors 'none'" />
+    <meta http-equiv="X-Content-Type-Options" content="nosniff" />
+    <meta name="referrer" content="no-referrer" />
     <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
     <!--
       manifest.json provides metadata used when your web app is installed on a
@@ -24,10 +47,25 @@
       work correctly both with client-side routing and a non-root public URL.
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
-    <title>React App</title>
+    <title>Nova Max Transportes — Terraplenagem, Drenagem e Pavimentação</title>
   </head>
   <body>
-    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <!-- Fallback apenas quando o JavaScript estiver desativado -->
+    <noscript>
+      <div id="nojs-fallback" itemscope itemtype="https://schema.org/Organization" style="padding: 2rem; max-width: 880px; margin: 0 auto; font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, 'Helvetica Neue', Arial, 'Noto Sans', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';">
+        <h1 itemprop="name" style="margin: 0 0 .5rem; font-size: 1.75rem; color: #0b1220;">Nova Max Transportes</h1>
+        <meta itemprop="url" content="https://www.novamaxtransportes.com.br/" />
+        <p style="margin: 0 0 1rem; color: #2f3a4f;">Terraplenagem, drenagem, pavimentação e logística com frota própria e equipe qualificada. Atuação em todo o Brasil.</p>
+        <section aria-label="Canais de contato">
+          <p style="margin: 0 0 .5rem; color: #2f3a4f;">Entre em contato pelos canais oficiais:</p>
+          <ul style="margin: 0 0 1rem 1.2rem; color: #2f3a4f;">
+            <li>Site: <a itemprop="url" href="https://www.novamaxtransportes.com.br" rel="noopener" style="color:#0a7c5b; text-decoration: none;">novamaxtransportes.com.br</a></li>
+            <li>E-mail: <a itemprop="email" href="mailto:contato@novamaxtransportes.com.br" style="color:#0a7c5b; text-decoration: none;">contato@novamaxtransportes.com.br</a></li>
+          </ul>
+        </section>
+        <p style="margin: 0; color: #5c6a82; font-size: .9rem;">Seu navegador está com JavaScript desativado. Alguns recursos podem não estar disponíveis.</p>
+      </div>
+    </noscript>
     <div id="root"></div>
     <!--
       This HTML file is a template.
