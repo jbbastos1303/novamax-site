@@ -12,6 +12,20 @@ import heroVideo from "./assets/hero-video.mp4"; // ajuste caminho se necessári
 const ObrasPage = lazy(() => import("./pages/obras"));
 const GaleriaPage = lazy(() => import("./pages/galeria"));
 
+// ===== Configurações globais (WhatsApp) =====
+const WHATSAPP_NUMBER = "+55 21 96475-8679";
+const WHATSAPP_DIGITS = WHATSAPP_NUMBER.replace(/\D/g, "");
+const WHATSAPP_TEXT = encodeURIComponent("Olá, gostaria de mais informações sobre locação de equipamentos.");
+export function getWhatsAppHref() {
+  const ua = navigator.userAgent || "";
+  const isMobile = /Android|iPhone|iPad|iPod|IEMobile|Opera Mini/i.test(ua);
+  // Mobile: esquema nativo tem maior chance de pré-preencher
+  if (isMobile) return `whatsapp://send?phone=${WHATSAPP_DIGITS}&text=${WHATSAPP_TEXT}`;
+  // Web: tentar web.whatsapp.com e api.whatsapp.com
+  // Alguns ambientes de desktop preferem web.whatsapp.com
+  return `https://web.whatsapp.com/send?phone=${WHATSAPP_DIGITS}&text=${WHATSAPP_TEXT}`;
+}
+
 /* --- Seções da Home (mantive a estrutura e textos principais) --- */
 
 function HeroSection() {
@@ -27,8 +41,8 @@ function HeroSection() {
           Frota própria, pronta para atender empresas de construção, concessionárias de infraestrutura e obras públicas em todo o Brasil.
         </p>
         <div className="hero-ctas">
-          <a href="#frota" className="btn btn-primary btn-large">Locar Equipamentos Agora</a>
-          <a href="#servicos" className="btn btn-secondary btn-large">Conheça Nossos Serviços</a>
+          <a href="#locar" className="btn btn-primary btn-large">Nossos Equipamentos</a>
+          <a href="#servicos" className="btn btn-secondary btn-large">Conheça os Serviços</a>
         </div>
       </div>
     </section>
@@ -98,11 +112,18 @@ function DifferentiatorsSection() {
 
 function FleetHighlightSection() {
   return (
-    <section className="fleet-highlight-section bg-light-green">
+    <section id="frota" className="fleet-highlight-section bg-light-green">
       <div className="container text-center">
         <h2 className="fleet-highlight-title">Frota própria e equipamentos disponíveis para empresas de construção e concessionárias.</h2>
         <p className="fleet-highlight-lead">Operamos com segurança, disponibilidade e entrega garantida em todo o Brasil.</p>
-        <a href="#frota" className="btn btn-primary btn-large">Locar Equipamentos Agora</a>
+        <a
+          href={getWhatsAppHref()}
+          className="btn btn-primary btn-large"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Locar Equipamentos Agora
+        </a>
       </div>
     </section>
   );
@@ -110,7 +131,7 @@ function FleetHighlightSection() {
 
 function FleetSection() {
   return (
-    <section id="frota" className="fleet-section">
+    <section id="locar" className="fleet-section">
       <div className="container">
         <h2 className="section-title">Locação de Equipamentos e Caminhões para Empresas e Concessionárias</h2>
         <p className="section-description">
@@ -141,8 +162,7 @@ function FleetSection() {
         </div>
 
         <p className="impact-callout">A potência da Nova Max está à disposição da sua obra. <span className="slogan-commercial">Potência que constrói resultados.</span></p>
-        <div className="cta-group">
-          <a href="#contato" className="btn btn-primary btn-large">👉 Solicitar locação corporativa</a>
+            <div className="contact-actions" style={{ display: "flex", justifyContent: "center", alignItems: "center", gap: ".75rem", marginTop: ".75rem" }}>
           <a href="#contato" className="btn btn-outline btn-large">Consultar disponibilidade imediata</a>
         </div>
       </div>
@@ -209,14 +229,12 @@ function ServicesSection() {
 function ContactSection() {
   const addressLine1 = "Avenida Marechal Deodoro, 354 sala 104";
   const addressLine2 = "Centro, Duque de Caxias - RJ";
-  const phone = "+55 21 96475-8679";
+  const phone = WHATSAPP_NUMBER;
   const email = "comercial@novamaxtransportes.com.br";
   const email2 = "novamaxtransportes@outlook.com";
 
-  // formata número para o link do WhatsApp (apenas dígitos, com código do país)
-  const phoneDigits = phone.replace(/\D/g, "");
-  const waText = encodeURIComponent("Olá, gostaria de mais informações sobre locação de equipamentos.");
-  const waHref = `https://wa.me/${phoneDigits}?text=${waText}`;
+  // link global de WhatsApp
+  const waHref = getWhatsAppHref();
 
   // mailto com subject e body padrão (codificados)
   const mailSubject = "Orçamento de Locação";
@@ -229,20 +247,7 @@ function ContactSection() {
       <div className="container contact-container">
         <div className="contact-grid">
           <div className="contact-info">
-            <h2 className="section-title text-light">Fale Conosco</h2>
-            <p className="section-description text-light">Pronto para transformar seu projeto? Entre em contato.</p>
-
-            <address className="company-address">
-              <strong className="company-name">Nova Max Transportes</strong>
-              <div className="company-street">{addressLine1}</div>
-              <div className="company-city">{addressLine2}</div>
-              <div className="company-city">Telefones: (21) 3845-1506 / (21) 2759-5098</div>
-              <div className="company-city" ><a
-                href={mailtoHref} style={{ color: "#fff" }}>comercial@novamaxtransportes.com.br</a></div>
-              <div className="company-city" ><a
-                href={mailtoHref2} style={{ color: "#fff" }}>novamaxtransportes@outlook.com</a></div>
-            </address>
-
+            <h2 className="section-title text-light">Fale Conosco</h2>            
             <div className="contact-actions">
               <a
                 href={waHref}
@@ -275,7 +280,21 @@ function ContactSection() {
               </a>
 
             </div>
+            <p className="section-description text-light">Pronto para transformar seu projeto? Entre em contato.</p>
 
+            <address className="company-address">
+              <strong className="company-name">Nova Max Transportes</strong>
+              <div className="company-street">{addressLine1}</div>
+              <div className="company-city">{addressLine2}</div>
+              <div className="company-city">Telefones: (21) 3845-1506 / (21) 2759-5098</div>
+              <div className="company-city">
+                WhatsApp: <a href={waHref} target="_blank" rel="noopener noreferrer" style={{ color: "#fff", textDecoration: "underline" }}>+55 21 96475-8679</a>
+              </div>
+              <div className="company-city" ><a
+                href={mailtoHref} style={{ color: "#fff" }}>comercial@novamaxtransportes.com.br</a></div>
+              <div className="company-city" ><a
+                href={mailtoHref2} style={{ color: "#fff" }}>novamaxtransportes@outlook.com</a></div>
+            </address>
             <p className="contact-note text-light">
               Horário de atendimento: Segunda a Sexta, 08:00–18:00.
             </p>
