@@ -116,14 +116,7 @@ function FleetHighlightSection() {
       <div className="container text-center">
         <h2 className="fleet-highlight-title">Frota própria e equipamentos disponíveis para empresas de construção e concessionárias.</h2>
         <p className="fleet-highlight-lead">Operamos com segurança, disponibilidade e entrega garantida em todo o Brasil.</p>
-        <a
-          href={getWhatsAppHref()}
-          className="btn btn-primary btn-large"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Locar Equipamentos Agora
-        </a>
+        <a href="#contato" className="btn btn-outline btn-large">Consultar disponibilidade imediata</a>
       </div>
     </section>
   );
@@ -163,8 +156,16 @@ function FleetSection() {
 
         <p className="impact-callout">A potência da Nova Max está à disposição da sua obra. <span className="slogan-commercial">Potência que constrói resultados.</span></p>
             <div className="contact-actions" style={{ display: "flex", justifyContent: "center", alignItems: "center", gap: ".75rem", marginTop: ".75rem" }}>
-          <a href="#contato" className="btn btn-outline btn-large">Consultar disponibilidade imediata</a>
+                 <a
+          href={getWhatsAppHref()}
+          className="btn btn-primary btn-large"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Locar Equipamentos
+        </a>
         </div>
+ 
       </div>
     </section>
   );
