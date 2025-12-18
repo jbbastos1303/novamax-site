@@ -1,4 +1,19 @@
 @media (max-width: 640px) {
+  section#servicos {
+    scroll-margin-top: 220px; /* valor maior para garantir visibilidade do título */
+  }
+}
+@media (max-width: 640px) {
+  section#frota {
+    scroll-margin-top: 220px; /* valor maior para garantir visibilidade do título */
+  }
+}
+@media (max-width: 640px) {
+  section#about {
+    scroll-margin-top: 220px; /* valor maior para garantir visibilidade do título */
+  }
+}
+@media (max-width: 640px) {
   section[id] {
     scroll-margin-top: 288px; /* ajuste conforme altura do header/mobile */
   }
