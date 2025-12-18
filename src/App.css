@@ -1,6 +1,6 @@
 @media (max-width: 640px) {
   section[id] {
-    scroll-margin-top: 150px; /* ajuste conforme altura do header/mobile */
+    scroll-margin-top: 288px; /* ajuste conforme altura do header/mobile */
   }
 }
 /* Corrige âncoras escondidas pelo header fixo */
