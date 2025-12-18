@@ -6,6 +6,7 @@ import "./App.css"; // CSS global importado apenas aqui
 import { FaWhatsapp } from "react-icons/fa";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
+import ScrollToTop from "./components/ScrollToTop";
 import heroVideo from "./assets/hero-video.mp4"; // ajuste caminho se necessário
 
 // Lazy load das páginas (import dinâmico dentro do lazy é OK)
@@ -353,6 +354,7 @@ function Home() {
 export default function App() {
   return (
     <BrowserRouter>
+      <ScrollToTop />
       <Suspense fallback={<div style={{ padding: 40, textAlign: "center" }}>Carregando...</div>}>
         <Routes>
           <Route path="/" element={<Home />} />
