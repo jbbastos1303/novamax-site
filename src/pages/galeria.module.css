@@ -1,4 +1,15 @@
 @media (max-width: 640px) {
+  .panelTop,
+  .activeFilterBadge {
+    display: none;
+  }
+}
+@media (max-width: 640px) {
+  .chips {
+    display: none;
+  }
+}
+@media (max-width: 640px) {
   .searchWrap {
     display: none;
   }
