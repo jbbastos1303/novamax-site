@@ -12,8 +12,8 @@ const projects = [
     year: 2023,
     scope: "Cortes, aterros, compactação e preparação de plataforma industrial.",
     equipment: "Escavadeiras, pás carregadeiras, rolos compactadores, caminhões basculantes.",
-    thumb: "/images/obras/terraplanagem1.png",
-    gallery: ["/images/obras/terraplanagem1.png", "/images/obras/terraplanagem2.png"]
+    thumb: "/images/obras/terraplanagem1.jpg",
+    gallery: ["/images/obras/terraplanagem1.jpg", "/images/obras/terraplanagem2.jpg"]
   },
   {
     id: "obra-02",
@@ -23,8 +23,8 @@ const projects = [
     year: 2022,
     scope: "Sistema de drenagem, subleito e aplicação de CBUQ em acesso logístico.",
     equipment: "Motoniveladoras, compactadores, caminhões truck.",
-    thumb: "/images/obras/drenagem1.png",
-    gallery: ["/images/obras/drenagem1.png", "/images/obras/drenagem2.png"]
+    thumb: "/images/obras/drenagem1.jpg",
+    gallery: ["/images/obras/drenagem1.jpg", "/images/obras/drenagem2.jpg"]
   },
   {
     id: "obra-03",
@@ -34,8 +34,8 @@ const projects = [
     year: 2024,
     scope: "Recomposição e estabilização de taludes com drenagem e revegetação.",
     equipment: "Tratores de esteira, escavadeiras, equipamentos de drenagem.",
-    thumb: "/images/obras/talude1.png",
-    gallery: ["/images/obras/talude1.png", "/images/obras/talude2.png"]
+    thumb: "/images/obras/talude1.jpg",
+    gallery: ["/images/obras/talude1.jpg", "/images/obras/talude2.jpg"]
   }
 ];
 
