@@ -56,10 +56,13 @@ function AboutSection() {
       <div className="container">
         <h2 className="section-title">Sobre a Nova Max Transportes</h2>
         <p className="section-description large-text">
-          A Nova Max Transportes, Locação e Construções é sua parceira estratégica em infraestrutura, movimentação de terras e obras civis.
+          A Nova Max Transportes, Locação e Construções consolidou sua atuação no setor de <span className="about-highlight">infraestrutura</span> por meio de experiência prática, participação em grandes obras e excelência na entrega de resultados. Ao longo de sua trajetória, a empresa construiu um histórico sólido em projetos de terraplenagem, drenagem, pavimentação e <span className="about-highlight">logística pesada</span>, atendendo demandas complexas com seriedade e responsabilidade.
         </p>
         <p className="section-description">
-          Com uma frota robusta e própria, e uma equipe técnica altamente qualificada, garantimos autonomia, agilidade e os melhores resultados.
+          Nossa experiência em campo é sustentada por uma <span className="about-highlight">frota própria</span> robusta, <span className="about-highlight">equipe técnica qualificada</span> e processos bem definidos. Cada obra é conduzida com planejamento, <span className="about-highlight">controle técnico</span> e acompanhamento permanente, garantindo segurança, eficiência operacional e cumprimento rigoroso dos <span className="about-highlight">prazos</span> estabelecidos.
+        </p>
+        <p className="section-description">
+          A Nova Max entende que grandes obras exigem comprometimento absoluto, capacidade de execução e confiança. Por isso, atuamos com foco em <span className="about-highlight">qualidade</span>, transparência e excelência operacional em todas as etapas do projeto, do início à entrega final. Nosso compromisso é gerar valor real para cada cliente, contribuir para o desenvolvimento da infraestrutura e manter relações duradouras baseadas em resultados consistentes e confiáveis.
         </p>
         <div className="text-center">
           <a href="#contato" className="btn btn-primary btn-large">Fale Conosco</a>
@@ -115,8 +118,8 @@ function FleetHighlightSection() {
   return (
     <section id="frota" className="fleet-highlight-section bg-light-green">
       <div className="container text-center">
-        <h2 className="fleet-highlight-title">Frota própria e equipamentos disponíveis para empresas de construção e concessionárias.</h2>
-        <p className="fleet-highlight-lead">Operamos com segurança, disponibilidade e entrega garantida em todo o Brasil.</p>
+        <h2 className="fleet-highlight-title">Frota própria e equipamentos disponíveis para obras de infraestrutura</h2>
+        <p className="fleet-highlight-lead">A Nova Max opera com frota própria de equipamentos pesados e caminhões, dimensionada para atender obras de infraestrutura, construtoras e concessionárias. Nossa estrutura garante disponibilidade imediata, mobilização ágil e continuidade operacional, assegurando produtividade e cumprimento rigoroso de prazos em todas as frentes de obra.</p>
         <a href="#contato" className="btn btn-outline btn-large">Consultar disponibilidade imediata</a>
       </div>
     </section>
@@ -129,11 +132,12 @@ function FleetSection() {
       <div className="container">
         <h2 className="section-title">Locação de Equipamentos e Caminhões para Empresas e Concessionárias</h2>
         <p className="section-description">
-          A Nova Max disponibiliza sua frota completa de equipamentos pesados e caminhões para construtoras, empreiteiras e concessionárias de infraestrutura.
+          A Nova Max disponibiliza sua frota completa de equipamentos pesados e caminhões para locação, com foco em obras civis, viárias e de infraestrutura. Todos os equipamentos passam por manutenção constante e são operados por profissionais qualificados, garantindo segurança, desempenho e confiabilidade durante toda a execução dos serviços.
         </p>
         <div className="equipment-grid">
           <div className="equipment-list">
             <h4>Equipamentos Pesados</h4>
+            <p>Nossa frota de equipamentos pesados é preparada para atender demandas contínuas de obras de infraestrutura, oferecendo robustez, precisão operacional e alto desempenho em diferentes condições de solo, terreno e carga de trabalho.</p>
             <ul>
               <li>Escavadeiras hidráulicas</li>
               <li>Retroescavadeiras</li>
@@ -145,6 +149,7 @@ function FleetSection() {
           </div>
           <div className="equipment-list">
             <h4>Caminhões e Acessórios</h4>
+            <p>A frota de caminhões e acessórios da Nova Max assegura eficiência logística e suporte completo às frentes de obra, viabilizando transporte de materiais, equipamentos e apoio operacional com disponibilidade imediata e integração total às operações em campo.</p>
             <ul>
               <li>Caminhões basculantes e truck</li>
               <li>Caminhões munck</li>
@@ -155,7 +160,7 @@ function FleetSection() {
           </div>
         </div>
 
-        <p className="impact-callout">A potência da Nova Max está à disposição da sua obra. <span className="slogan-commercial">Potência que constrói resultados.</span></p>
+        <p className="impact-callout">A potência da Nova Max está à disposição da sua obra. Mais do que locação de equipamentos, entregamos estrutura, confiabilidade e capacidade operacional para projetos que exigem desempenho contínuo e compromisso com resultados.</p>
             <div className="contact-actions" style={{ display: "flex", justifyContent: "center", alignItems: "center", gap: ".75rem", marginTop: ".75rem" }}>
                  <a
           href={getWhatsAppHref()}
@@ -178,51 +183,51 @@ function ServicesSection() {
       <div className="container">
         <h2 className="section-title">Serviços Técnicos e Especialidades</h2>
         <p className="section-description">
-          A Nova Max Transportes é especializada em infraestrutura, movimentação de terras e obras civis, oferecendo soluções completas.
+          A Nova Max atua de forma integrada na execução de serviços de infraestrutura, unindo planejamento, frota própria, equipe técnica qualificada e gestão de campo. Cada serviço é executado com rigor técnico, disciplina operacional e foco em segurança, qualidade e cumprimento de prazos, atendendo obras de diferentes portes e níveis de complexidade.
         </p>
 
         <div className="service-cards-grid">
           <div className="service-card">
             <div className="service-icon">🧨</div>
             <h3>Demolição Controlada</h3>
-            <p>Execução de demolições estruturais e seletivas com segurança e controle ambiental.</p>
+            <p>Execução de demolições estruturais e seletivas com planejamento técnico, controle ambiental e foco em segurança. Atuamos em áreas urbanas e industriais, garantindo precisão na operação, mitigação de riscos e destinação adequada de resíduos, conforme normas técnicas e ambientais.</p>
           </div>
 
           <div className="service-card">
             <div className="service-icon">🚜</div>
             <h3>Terraplenagem e Movimentação de Terras</h3>
-            <p>Especialistas em cortes, aterros e regularização de terrenos.</p>
+            <p>Serviços completos de corte, aterro, nivelamento e conformação de terrenos para obras de infraestrutura. A Nova Max opera com frota própria e controle técnico rigoroso, assegurando estabilidade do solo, produtividade e preparação adequada para as etapas seguintes da obra.</p>
           </div>
 
           <div className="service-card">
             <div className="service-icon">💧</div>
             <h3>Drenagem</h3>
-            <p>Sistemas de drenagem superficial e profunda para preservação da estabilidade do solo.</p>
+            <p>Implantação de sistemas de drenagem superficial e profunda, voltados à preservação da estabilidade do solo e durabilidade da obra. Executamos redes pluviais, valas, canalizações e soluções técnicas adequadas às condições geotécnicas de cada projeto.</p>
           </div>
 
           <div className="service-card">
             <div className="service-icon">🛣️</div>
             <h3>Pavimentação e Base de Subleito</h3>
-            <p>Execução de subleitos e aplicação de CBUQ com supervisão técnica.</p>
+            <p>Execução de subleitos, bases e pavimentação, incluindo aplicação de CBUQ, com controle técnico e acompanhamento permanente. Trabalhamos para garantir resistência, durabilidade e desempenho adequado ao tráfego previsto, respeitando normas e especificações técnicas.</p>
           </div>
 
           <div className="service-card">
             <div className="service-icon">🧱</div>
             <h3>Solo-Cimento</h3>
-            <p>Estabilização de solos conforme normas técnicas.</p>
+            <p>Estabilização de solos por meio da técnica de solo-cimento, promovendo melhoria das características mecânicas e aumento da capacidade de suporte do terreno. Solução eficiente para bases e sub-bases, com controle técnico e execução precisa.</p>
           </div>
 
           <div className="service-card">
             <div className="service-icon">⛰️</div>
             <h3>Recomposição e Estabilização de Taludes</h3>
-            <p>Conformações e contenções com foco em estabilidade geotécnica.</p>
+            <p>Serviços de conformação, contenção e estabilização de taludes, com foco em segurança geotécnica e preservação da integridade da obra. Atuamos na recomposição de áreas degradadas e contenções necessárias para obras viárias e de infraestrutura.</p>
           </div>
         </div>
 
         <p className="commitment-text">
-          A Nova Max integra planejamento, execução e gestão de campo com rigor técnico e disciplina operacional.
+          A Nova Max integra planejamento, execução e gestão de campo com rigor técnico e disciplina operacional, entregando soluções completas em infraestrutura, da preparação do terreno à finalização da obra.
         </p>
-        <p className="slogan-final">Nova Max – Engenharia, potência e técnica a serviço do progresso.</p>
+        <p className="slogan-final">Nova Max – Soluções completas em infraestrutura com rigor técnico e compromisso com resultados.</p>
       </div>
     </section>
   );

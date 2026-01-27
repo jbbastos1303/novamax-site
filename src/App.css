@@ -389,7 +389,26 @@ img {
 }
 
 .about-section .section-description {
-  margin-bottom: calc(2.5 * var(--spacing-unit));
+  margin-bottom: calc(1.75 * var(--spacing-unit));
+  max-width: 980px;
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: #3f4a52;
+  letter-spacing: 0.05px;
+  text-align: justify;
+  text-justify: inter-word;
+}
+
+.about-section .section-description.large-text {
+  font-size: 1.18rem;
+  line-height: 1.8;
+  color: #2d3a40;
+  max-width: 1000px;
+}
+
+.about-highlight {
+  color: var(--primary-color-dark);
+  font-weight: 600;
 }
 
 /* Differentiators Section */
@@ -493,8 +512,22 @@ img {
   font-size: 1.4rem;
 }
 
+.equipment-list p {
+  margin: 0 0 1.25rem;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #4a4a4a;
+}
+
 .equipment-list ul {
   list-style: none; /* Removendo o disc padrão */
+  margin: 0;
+  padding: 0;
+}
+
+.equipment-list p + ul {
+  padding-top: .5rem;
+  border-top: 1px solid rgba(0,0,0,0.06);
 }
 
 .equipment-list ul li {
@@ -863,6 +896,30 @@ img {
   .footer .site-credit {
     align-self: stretch;
     justify-content: flex-start;
+  }
+
+  .equipment-grid {
+    gap: calc(3 * var(--spacing-unit));
+    margin-top: calc(2.5 * var(--spacing-unit));
+    margin-bottom: calc(3 * var(--spacing-unit));
+  }
+
+  .equipment-list {
+    padding: calc(2.25 * var(--spacing-unit));
+  }
+
+  .equipment-list h4 {
+    margin-bottom: calc(1.25 * var(--spacing-unit));
+  }
+
+  .equipment-list p {
+    margin-bottom: 1rem;
+    font-size: .98rem;
+  }
+
+  .equipment-list ul li {
+    margin-bottom: .6rem;
+    font-size: 1rem;
   }
 }
 
