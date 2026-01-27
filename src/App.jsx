@@ -1,5 +1,5 @@
 // src/App.jsx
-import React, { Suspense, lazy } from "react";
+import React, { Suspense, lazy, useRef } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import ScrollToHash from "./components/ScrollToHash";
 import "./App.css"; // CSS global importado apenas aqui
@@ -50,6 +50,44 @@ function HeroSection() {
   );
 }
 
+function InstitutionalVideoSection() {
+  const videoRef = useRef(null);
+
+  function handlePlayVideo() {
+    const video = videoRef.current;
+    if (!video) return;
+    video.scrollIntoView({ behavior: "smooth", block: "center" });
+    video.play?.();
+  }
+
+  return (
+    <section className="institutional-video-section">
+      <div className="container institutional-video-grid">
+        <div className="institutional-video-text">          
+          <p className="section-description">
+            Conheça a Nova Max em operação. 
+            Neste vídeo institucional, apresentamos nossa frota própria, a atuação da equipe em campo e a execução de obras de terraplenagem, drenagem, pavimentação e logística pesada.
+          </p>
+          <button type="button" className="video-callout" onClick={handlePlayVideo}>
+            ▶ Assista ao vídeo e entenda, em poucos minutos, a capacidade operacional da Nova Max.
+          </button>
+        </div>
+        <div className="institutional-video-media">
+          <video
+            ref={videoRef}
+            controls
+            preload="metadata"
+            poster="/images/video-book.jpg"
+            className="institutional-video-player"
+          >
+            <source src="/images/video-book.mp4" type="video/mp4" />
+          </video>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 function AboutSection() {
   return (
     <section id="about" className="about-section bg-light-gray">
@@ -64,8 +102,9 @@ function AboutSection() {
         <p className="section-description">
           A Nova Max entende que grandes obras exigem comprometimento absoluto, capacidade de execução e confiança. Por isso, atuamos com foco em <span className="about-highlight">qualidade</span>, transparência e excelência operacional em todas as etapas do projeto, do início à entrega final. Nosso compromisso é gerar valor real para cada cliente, contribuir para o desenvolvimento da infraestrutura e manter relações duradouras baseadas em resultados consistentes e confiáveis.
         </p>
+        <InstitutionalVideoSection />
         <div className="text-center">
-          <a href="#contato" className="btn btn-primary btn-large">Fale Conosco</a>
+          <a href="#contato" className="btn btn-primary btn-large">Falar com a Nova Max</a>
         </div>
       </div>
     </section>

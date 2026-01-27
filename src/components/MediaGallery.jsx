@@ -142,7 +142,10 @@ export default function MediaGallery({
   }, [lightbox.open, modal.open, goPrev, goNext]);
 
   /* Itens da modal (com paginação) */
-  const modalItems = modal.open ? (grouped[modal.sectionKey] || []) : [];
+  const modalItems = useMemo(() => {
+    if (!modal.open) return [];
+    return grouped[modal.sectionKey] || [];
+  }, [modal.open, modal.sectionKey, grouped]);
 
   /* Paginação/infinite state por modal */
   const PAGE_SIZE = 12;
