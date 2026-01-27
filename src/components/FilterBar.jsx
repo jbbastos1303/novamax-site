@@ -39,7 +39,6 @@ export default function FilterBar({
               className={`${styles.chip} ${isActive ? styles.chipActive : ""}`}
               onClick={() => onChange(f.key)}
               onKeyDown={(e) => handleKeyDown(e, i)}
-              aria-pressed={isActive}
               role="tab"
               aria-selected={isActive}
               aria-label={`Filtrar por ${f.label}`}

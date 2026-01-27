@@ -4,10 +4,30 @@ import styles from "../pages/galeria.module.css";
 
 /* Seções e ordem */
 const SECTIONS = [
-  { key: "frota", title: "Frota", subtitle: "Fotos da Frota" },
-  { key: "obra", title: "Obras", subtitle: "Fotos das Obras" },
-  { key: "equipe", title: "Equipe", subtitle: "Fotos da Equipe" },
-  { key: "video", title: "Vídeos", subtitle: "Vídeos institucionais" }
+  { 
+    key: "frota", 
+    title: "Frota", 
+    subtitle: "Fotos da Frota",
+    description: "A Nova Max opera com frota própria de caminhões e equipamentos pesados, preparada para atender obras de infraestrutura de diferentes portes e complexidades. Os equipamentos passam por manutenção constante e são operados por profissionais qualificados, garantindo produtividade, segurança e confiabilidade em todas as etapas do projeto."
+  },
+  { 
+    key: "obra", 
+    title: "Obras", 
+    subtitle: "Fotos das Obras",
+    description: "Cada obra executada pela Nova Max reflete planejamento, capacidade operacional e compromisso com resultados. Atuamos em projetos de terraplenagem, drenagem, pavimentação e logística pesada, com controle técnico, equipe qualificada e frota própria."
+  },
+  { 
+    key: "equipe", 
+    title: "Equipe", 
+    subtitle: "Fotos da Equipe",
+    description: "A força da Nova Max está nas pessoas. A equipe técnica e operacional atua diretamente em campo, com experiência, qualificação e foco em segurança, qualidade e cumprimento de prazos."
+  },
+  { 
+    key: "video", 
+    title: "Vídeos", 
+    subtitle: "Vídeos institucionais",
+    description: "Conheça a Nova Max em operação através dos nossos vídeos institucionais."
+  }
 ];
 
 export default function MediaGallery({
@@ -122,7 +142,9 @@ export default function MediaGallery({
   }, [lightbox.open, modal.open, goPrev, goNext]);
 
   /* Itens da modal (com paginação) */
-  const modalItems = modal.open ? (grouped[modal.sectionKey] || []) : [];
+  const modalItems = useMemo(() => {
+    return modal.open ? (grouped[modal.sectionKey] || []) : [];
+  }, [modal.open, grouped, modal.sectionKey]);
 
   /* Paginação/infinite state por modal */
   const PAGE_SIZE = 12;
@@ -237,6 +259,9 @@ export default function MediaGallery({
               <div>
                 <h2 id={`section-${section.key}`} className={styles.sectionTitle}>{section.title}</h2>
                 <p className={styles.sectionSubtitle}>{section.subtitle}</p>
+                {section.description && (
+                  <p className={styles.sectionDescription}>{section.description}</p>
+                )}
               </div>
 
               <div className={styles.sectionMeta}>
@@ -280,6 +305,44 @@ export default function MediaGallery({
           </section>
         );
       })}
+
+      {/* CTA final da galeria */}
+      <div className={styles.galleryCTA} style={{ 
+        textAlign: "center", 
+        padding: "3rem 1rem", 
+        background: "#f8f9fa",
+        borderRadius: "8px",
+        margin: "2rem 0"
+      }}>
+        <h3 style={{ 
+          fontSize: "1.5rem", 
+          fontWeight: "600", 
+          marginBottom: "1rem",
+          color: "#0b1220"
+        }}>
+          Pronto para levar a Nova Max para sua obra?
+        </h3>
+        <p style={{ 
+          fontSize: "1.1rem", 
+          marginBottom: "1.5rem",
+          color: "#444"
+        }}>
+          Fale com nossa equipe e solicite uma proposta.
+        </p>
+        <a 
+          href="#contato" 
+          className="btn btn-primary btn-large"
+          style={{
+            display: "inline-block",
+            padding: "0.875rem 2rem",
+            fontSize: "1rem",
+            fontWeight: "600",
+            textDecoration: "none"
+          }}
+        >
+          Fale Conosco
+        </a>
+      </div>
 
       {/* Modal com grid completo e infinite scroll */}
       {modal.open && (

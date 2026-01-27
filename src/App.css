@@ -1075,3 +1075,36 @@ img {
     font-size: 1.5rem;
   }
 }
+/* Institutional Video Section */
+.institutional-video-section {
+  padding: calc(4 * var(--spacing-unit)) 0;
+  background: #fff;
+}
+
+.institutional-video-section .section-title {
+  text-align: center;
+  margin-bottom: calc(2 * var(--spacing-unit));
+}
+
+.institutional-video-section .section-description {
+  line-height: 1.7;
+  color: var(--text-secondary);
+}
+
+/* Equipment intro paragraphs */
+.equipment-list .equipment-intro {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--text-secondary);
+  margin-bottom: calc(1.5 * var(--spacing-unit));
+  font-style: italic;
+}
+
+/* Gallery section description */
+.sectionDescription {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--text-secondary);
+  margin-top: calc(1 * var(--spacing-unit));
+  max-width: 800px;
+}

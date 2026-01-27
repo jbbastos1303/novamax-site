@@ -905,3 +905,12 @@
   -webkit-transform-style: preserve-3d;
   transform-style: preserve-3d;
 }
+
+/* Section description styling */
+.sectionDescription {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--muted);
+  margin-top: 0.75rem;
+  max-width: 800px;
+}
