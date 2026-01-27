@@ -4,10 +4,30 @@ import styles from "../pages/galeria.module.css";
 
 /* Seções e ordem */
 const SECTIONS = [
-  { key: "frota", title: "Frota", subtitle: "Fotos da Frota" },
-  { key: "obra", title: "Obras", subtitle: "Fotos das Obras" },
-  { key: "equipe", title: "Equipe", subtitle: "Fotos da Equipe" },
-  { key: "video", title: "Vídeos", subtitle: "Vídeos institucionais" }
+  {
+    key: "frota",
+    title: "Frota",
+    subtitle:
+      "A Nova Max opera com frota própria de caminhões e equipamentos pesados, preparada para atender obras de infraestrutura de diferentes portes e complexidades. Os equipamentos passam por manutenção constante e são operados por profissionais qualificados, garantindo produtividade, segurança e confiabilidade em todas as etapas do projeto."
+  },
+  {
+    key: "obra",
+    title: "Obras",
+    subtitle:
+      "Cada obra executada pela Nova Max reflete planejamento, capacidade operacional e compromisso com resultados. Atuamos em projetos de terraplenagem, drenagem, pavimentação e logística pesada, com controle técnico, equipe qualificada e frota própria."
+  },
+  {
+    key: "equipe",
+    title: "Equipe",
+    subtitle:
+      "A força da Nova Max está nas pessoas. A equipe técnica e operacional atua diretamente em campo, com experiência, qualificação e foco em segurança, qualidade e cumprimento de prazos."
+  },
+  {
+    key: "video",
+    title: "Vídeos",
+    subtitle:
+      "Conheça a Nova Max em operação. Neste vídeo institucional, apresentamos nossa frota própria, a atuação da equipe em campo e a execução de obras de terraplenagem, drenagem, pavimentação e logística pesada. Um retrato real da nossa capacidade operacional, do compromisso com prazos e da seriedade com que conduzimos cada projeto de infraestrutura, do planejamento à entrega final."
+  }
 ];
 
 export default function MediaGallery({
@@ -122,7 +142,10 @@ export default function MediaGallery({
   }, [lightbox.open, modal.open, goPrev, goNext]);
 
   /* Itens da modal (com paginação) */
-  const modalItems = modal.open ? (grouped[modal.sectionKey] || []) : [];
+  const modalItems = useMemo(() => {
+    if (!modal.open) return [];
+    return grouped[modal.sectionKey] || [];
+  }, [modal.open, modal.sectionKey, grouped]);
 
   /* Paginação/infinite state por modal */
   const PAGE_SIZE = 12;
@@ -211,6 +234,11 @@ export default function MediaGallery({
       if (cleanupLightbox) cleanupLightbox();
     };
   }, [modal.open, lightbox.open]);
+
+  const currentLightboxItem = useMemo(() => {
+    if (!lightbox.list || lightbox.list.length === 0) return null;
+    return lightbox.list[lightbox.currentIndex] || null;
+  }, [lightbox.list, lightbox.currentIndex]);
 
   return (
     <div>
@@ -342,10 +370,22 @@ export default function MediaGallery({
 
             {/* Conteúdo */}
             <div className={styles.lightboxInner}>
+              {lightbox.type === "video" && currentLightboxItem?.alt && (
+                <p className={styles.lightboxCaptionTop}>{currentLightboxItem.alt}</p>
+              )}
+
               {lightbox.type === "image" ? (
-                <img src={lightbox.src} alt="" className={styles.lightboxImage} />
+                <img
+                  src={lightbox.src}
+                  alt={currentLightboxItem?.alt || ""}
+                  className={styles.lightboxImage}
+                />
               ) : (
                 <video src={lightbox.src} controls className={styles.lightboxVideo} />
+              )}
+
+              {lightbox.type !== "video" && currentLightboxItem?.alt && (
+                <p className={styles.lightboxCaption}>{currentLightboxItem.alt}</p>
               )}
 
               {/* Indicador de posição */}

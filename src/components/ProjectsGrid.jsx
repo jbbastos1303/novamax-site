@@ -10,8 +10,8 @@ const projects = [
     subtitle: "Plataforma A",
     location: "Região Sudeste",
     year: 2023,
-    scope: "Cortes, aterros, compactação e preparação de plataforma industrial.",
-    equipment: "Escavadeiras, pás carregadeiras, rolos compactadores, caminhões basculantes.",
+    scope: "Execução de serviços de terraplenagem industrial, incluindo cortes, aterros, compactação e preparação de plataforma para implantação de estrutura industrial. A obra foi conduzida com frota própria, controle técnico e gestão operacional contínua, garantindo estabilidade do terreno e cumprimento do cronograma.",
+    equipment: "Escavadeiras hidráulicas, pás carregadeiras, rolos compactadores e caminhões basculantes.",
     thumb: "/images/obras/terraplanagem1.jpg",
     gallery: ["/images/obras/terraplanagem1.jpg", "/images/obras/terraplanagem2.jpg"]
   },
@@ -21,8 +21,8 @@ const projects = [
     subtitle: "Acesso Logístico",
     location: "Região Sul",
     year: 2022,
-    scope: "Sistema de drenagem, subleito e aplicação de CBUQ em acesso logístico.",
-    equipment: "Motoniveladoras, compactadores, caminhões truck.",
+    scope: "Implantação de sistema de drenagem, execução de subleito e aplicação de pavimentação em acesso logístico. O serviço foi executado com foco em durabilidade, eficiência operacional e segurança, assegurando condições adequadas de tráfego e escoamento.",
+    equipment: "Motoniveladoras, compactadores e caminhões truck.",
     thumb: "/images/obras/drenagem1.jpg",
     gallery: ["/images/obras/drenagem1.jpg", "/images/obras/drenagem2.jpg"]
   },
@@ -32,8 +32,8 @@ const projects = [
     subtitle: "Contenção",
     location: "Região Norte",
     year: 2024,
-    scope: "Recomposição e estabilização de taludes com drenagem e revegetação.",
-    equipment: "Tratores de esteira, escavadeiras, equipamentos de drenagem.",
+    scope: "Execução de recomposição e estabilização de taludes, incluindo drenagem e revegetação. A intervenção teve como objetivo garantir estabilidade geotécnica, segurança estrutural e preservação da área, atendendo às exigências técnicas do projeto.",
+    equipment: "Tratores de esteira, escavadeiras hidráulicas e equipamentos de drenagem.",
     thumb: "/images/obras/talude1.jpg",
     gallery: ["/images/obras/talude1.jpg", "/images/obras/talude2.jpg"]
   }
