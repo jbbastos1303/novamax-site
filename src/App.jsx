@@ -13,6 +13,34 @@ import heroVideo from "./assets/hero-video.mp4"; // ajuste caminho se necessári
 const ObrasPage = lazy(() => import("./pages/obras"));
 const GaleriaPage = lazy(() => import("./pages/galeria"));
 
+const PARTNER_LOGOS = [
+  { src: "/images/parceiros/ag-320x240.jpg", alt: "AG" },
+  { src: "/images/parceiros/allonda-320x240.jpg", alt: "Allonda" },
+  { src: "/images/parceiros/camargocorreia-320x240.jpg", alt: "Camargo Corrêa" },
+  { src: "/images/parceiros/contek-320x240.jpg", alt: "Contek" },
+  { src: "/images/parceiros/cury-320x240.jpg", alt: "Cury" },
+  { src: "/images/parceiros/diase-320x240.jpg", alt: "Diase" },
+  { src: "/images/parceiros/direcional-320x240.jpg", alt: "Direcional" },
+  { src: "/images/parceiros/mrv-320x240.jpg", alt: "MRV" },
+  { src: "/images/parceiros/oas-320x240.jpg", alt: "OAS" },
+  { src: "/images/parceiros/odebrecht-320x240.jpg", alt: "Odebrecht" },
+  { src: "/images/parceiros/parceirosdeobras-transbrasil-320x240.jpg", alt: "Transbrasil" }
+];
+
+const SUPPLIER_LOGOS = [
+  { src: "/images/fornecedores/fornecedor-320x240.jpg", alt: "Fornecedor" },
+  { src: "/images/fornecedores/fornecedorDpaschoal-320x240.jpg", alt: "DPaschoal" },
+  { src: "/images/fornecedores/fornecedorTrator-320x240.jpg", alt: "Fornecedor Trator" },
+  { src: "/images/fornecedores/imperioDiesel-320x240.jpg", alt: "Império Diesel" },
+  { src: "/images/fornecedores/ipeoleo-320x240.jpg", alt: "Ipê Óleo" },
+  { src: "/images/fornecedores/mage-320x240.jpg", alt: "Magé" },
+  { src: "/images/fornecedores/morelat-320x240.jpg", alt: "Morelat" },
+  { src: "/images/fornecedores/polimix-320x240.jpg", alt: "Polimix" },
+  { src: "/images/fornecedores/ramar-diesel-320x240.jpg", alt: "Ramar Diesel" }
+];
+
+const ALL_LOGOS = [...PARTNER_LOGOS, ...SUPPLIER_LOGOS];
+
 // ===== Configurações globais (WhatsApp) =====
 const WHATSAPP_NUMBER = "+55 21 96475-8679";
 const WHATSAPP_DIGITS = WHATSAPP_NUMBER.replace(/\D/g, "");
@@ -267,6 +295,25 @@ function ServicesSection() {
           A Nova Max integra planejamento, execução e gestão de campo com rigor técnico e disciplina operacional, entregando soluções completas em infraestrutura, da preparação do terreno à finalização da obra.
         </p>
         <p className="slogan-final">Nova Max – Soluções completas em infraestrutura com rigor técnico e compromisso com resultados.</p>
+
+        <section className="partners-section" aria-label="Parceiros e fornecedores">
+          <div className="partners-header">
+            <h3 className="partners-title">Parceiros e fornecedores</h3>
+            <span className="partners-divider" aria-hidden="true" />
+            <p className="partners-subtitle">Relacionamentos sólidos que sustentam nossa capacidade operacional.</p>
+          </div>
+
+          <div className="logo-marquee" aria-label="Logos de parceiros e fornecedores">
+            <div className="logo-track">
+              {ALL_LOGOS.map((logo) => (
+                <img className="logo-img" src={logo.src} alt={logo.alt} loading="lazy" key={logo.src} />
+              ))}
+              {ALL_LOGOS.map((logo) => (
+                <img className="logo-img" src={logo.src} alt={logo.alt} loading="lazy" key={`dup-${logo.src}`} />
+              ))}
+            </div>
+          </div>
+        </section>
       </div>
     </section>
   );
