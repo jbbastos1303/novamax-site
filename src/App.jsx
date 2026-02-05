@@ -320,8 +320,8 @@ function ServicesSection() {
 }
 
 function ContactSection() {
-  const addressLine1 = "Avenida Marechal Deodoro, 354 sala 104";
-  const addressLine2 = "Centro, Duque de Caxias - RJ";
+  const addressLine1 = "Rua Rio Negro, 257 - Vila Ouro Preto";
+  const addressLine2 = "Duque de Caxias - RJ - CEP: 25065-007";
   const phone = WHATSAPP_NUMBER;
   const email = "comercial@novamaxtransportes.com.br";
   const email2 = "novamaxtransportes@outlook.com";
@@ -397,7 +397,7 @@ function ContactSection() {
             <div className="map-wrapper">
               <iframe
                 title="Localização Nova Max Transportes"
-                src="https://www.google.com/maps?q=Avenida%20Marechal%20Deodoro%2C%20354%20sala%20104%20-%20Centro%2C%20Duque%20de%20Caxias%20-%20RJ&output=embed"
+                src="https://www.google.com/maps?q=Rua%20Rio%20Negro%2C%20257%20-%20Vila%20Ouro%20Preto%2C%20Duque%20de%20Caxias%20-%20RJ&output=embed"
                 width="600"
                 height="450"
                 style={{ border: 0 }}
@@ -409,7 +409,7 @@ function ContactSection() {
 
             <p className="map-link">
               <a
-                href="https://www.google.com/maps/search/?api=1&query=Avenida%20Marechal%20Deodoro%2C%20354%20sala%20104%20-%20Centro%2C%20Duque%20de%20Caxias%20-%20RJ"
+                href="https://www.google.com/maps/search/?api=1&query=Rua%20Rio%20Negro%2C%20257%20-%20Vila%20Ouro%20Preto%2C%20Duque%20de%20Caxias%20-%20RJ"
                 target="_blank"
                 rel="noopener noreferrer"
               >
