@@ -81,6 +81,12 @@ export default function MediaGallery({
   function openLightboxAt(listForSection, index) {
     const item = listForSection[index];
     if (!item) return;
+    if (item.type === "video" && item.externalUrl) {
+      if (typeof window !== "undefined") {
+        window.open(item.externalUrl, "_blank", "noopener,noreferrer");
+      }
+      return;
+    }
     setLightbox({
       open: true,
       src: item.src,

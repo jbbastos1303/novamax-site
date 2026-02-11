@@ -38,7 +38,14 @@ const ITEMS = [
   { id: 24, src: "/images/equipe5.jpg", thumb: "/images/equipe5.jpg", type: "image", tag: "equipe", alt: "Equipe técnica da Nova Max atuando diretamente em campo." },
   { id: 25, src: "/images/equipe6.jpg", thumb: "/images/equipe6.jpg", type: "image", tag: "equipe", alt: "Profissionais em obra com foco em qualidade e cumprimento de prazos." },
 
-  { id: 26, src: "/images/video-book.mp4", thumb: "/images/video-book.jpg", type: "video", tag: "video", alt: "Conheça a Nova Max em operação. Neste vídeo institucional, apresentamos nossa frota própria, a atuação da equipe em campo e a execução de obras de terraplenagem, drenagem, pavimentação e logística pesada." }
+  {
+    id: 26,
+    thumb: "/images/video-book.jpg",
+    type: "video",
+    tag: "video",
+    alt: "Conheça a Nova Max em operação. Neste vídeo institucional, apresentamos nossa frota própria, a atuação da equipe em campo e a execução de obras de terraplenagem, drenagem, pavimentação e logística pesada.",
+    externalUrl: "https://www.youtube.com/watch?v=zgBkgvki-v0"
+  }
 ];
 
 const FILTERS = [

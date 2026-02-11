@@ -79,13 +79,15 @@ function HeroSection() {
 }
 
 function InstitutionalVideoSection() {
-  const videoRef = useRef(null);
+  const previewRef = useRef(null);
+  const youtubeWatchUrl = "https://www.youtube.com/watch?v=zgBkgvki-v0";
 
   function handlePlayVideo() {
-    const video = videoRef.current;
-    if (!video) return;
-    video.scrollIntoView({ behavior: "smooth", block: "center" });
-    video.play?.();
+    const preview = previewRef.current;
+    preview?.scrollIntoView({ behavior: "smooth", block: "center" });
+    if (typeof window !== "undefined") {
+      window.open(youtubeWatchUrl, "_blank", "noopener,noreferrer");
+    }
   }
 
   return (
@@ -101,15 +103,21 @@ function InstitutionalVideoSection() {
           </button>
         </div>
         <div className="institutional-video-media">
-          <video
-            ref={videoRef}
-            controls
-            preload="metadata"
-            poster="/images/video-book.jpg"
-            className="institutional-video-player"
+          <button
+            type="button"
+            className="youtube-placeholder"
+            onClick={handlePlayVideo}
+            aria-label="Assistir ao vídeo institucional no YouTube"
+            ref={previewRef}
           >
-            <source src="/images/video-book.mp4" type="video/mp4" />
-          </video>
+            <img
+              src="/images/video-book.jpg"
+              alt="Pré-visualização do vídeo institucional da Nova Max"
+              className="institutional-video-player"
+              loading="lazy"
+            />
+            <span className="youtube-play-badge">▶ Assistir no YouTube</span>
+          </button>
         </div>
       </div>
     </section>
