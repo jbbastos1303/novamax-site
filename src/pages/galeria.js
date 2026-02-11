@@ -40,11 +40,11 @@ const ITEMS = [
 
   {
     id: 26,
+    src: "/video/video-institucional.mp4",
     thumb: "/images/video-book.jpg",
     type: "video",
     tag: "video",
-    alt: "Conheça a Nova Max em operação. Neste vídeo institucional, apresentamos nossa frota própria, a atuação da equipe em campo e a execução de obras de terraplenagem, drenagem, pavimentação e logística pesada.",
-    externalUrl: "https://www.youtube.com/watch?v=zgBkgvki-v0"
+    alt: "Conheça a Nova Max em operação. Neste vídeo institucional, apresentamos nossa frota própria, a atuação da equipe em campo e a execução de obras de terraplenagem, drenagem, pavimentação e logística pesada."
   }
 ];
 

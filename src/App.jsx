@@ -79,21 +79,23 @@ function HeroSection() {
 }
 
 function InstitutionalVideoSection() {
-  const previewRef = useRef(null);
-  const youtubeWatchUrl = "https://www.youtube.com/watch?v=zgBkgvki-v0";
+  const videoRef = useRef(null);
+  const videoSrc = "/video/video-institucional.mp4";
 
   function handlePlayVideo() {
-    const preview = previewRef.current;
-    preview?.scrollIntoView({ behavior: "smooth", block: "center" });
-    if (typeof window !== "undefined") {
-      window.open(youtubeWatchUrl, "_blank", "noopener,noreferrer");
+    const node = videoRef.current;
+    if (!node) return;
+    node.scrollIntoView({ behavior: "smooth", block: "center" });
+    const playPromise = node.play?.();
+    if (playPromise?.catch) {
+      playPromise.catch(() => {});
     }
   }
 
   return (
     <section className="institutional-video-section">
       <div className="container institutional-video-grid">
-        <div className="institutional-video-text">          
+        <div className="institutional-video-text">
           <p className="section-description">
             Conheça a Nova Max em operação. 
             Neste vídeo institucional, apresentamos nossa frota própria, a atuação da equipe em campo e a execução de obras de terraplenagem, drenagem, pavimentação e logística pesada.
@@ -103,21 +105,16 @@ function InstitutionalVideoSection() {
           </button>
         </div>
         <div className="institutional-video-media">
-          <button
-            type="button"
-            className="youtube-placeholder"
-            onClick={handlePlayVideo}
-            aria-label="Assistir ao vídeo institucional no YouTube"
-            ref={previewRef}
+          <video
+            ref={videoRef}
+            className="institutional-video-player"
+            controls
+            preload="metadata"
+            poster="/images/video-book.jpg"
           >
-            <img
-              src="/images/video-book.jpg"
-              alt="Pré-visualização do vídeo institucional da Nova Max"
-              className="institutional-video-player"
-              loading="lazy"
-            />
-            <span className="youtube-play-badge">▶ Assistir no YouTube</span>
-          </button>
+            <source src={videoSrc} type="video/mp4" />
+            Seu navegador não suporta a reprodução deste vídeo.
+          </video>
         </div>
       </div>
     </section>

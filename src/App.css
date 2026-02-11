@@ -456,56 +456,6 @@ img {
   background: #000;
 }
 
-.youtube-placeholder {
-  position: relative;
-  border: 0;
-  padding: 0;
-  background: none;
-  cursor: pointer;
-  display: block;
-  width: 100%;
-  border-radius: 14px;
-  overflow: hidden;
-  font: inherit;
-}
-
-.youtube-placeholder img {
-  display: block;
-  width: 100%;
-  border-radius: inherit;
-}
-
-.youtube-placeholder::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  background: linear-gradient(180deg, rgba(0, 0, 0, 0.05) 0%, rgba(0, 0, 0, 0.55) 100%);
-  pointer-events: none;
-}
-
-.youtube-placeholder:focus-visible {
-  outline: 3px solid rgba(46,125,50,0.35);
-  outline-offset: 4px;
-}
-
-.youtube-play-badge {
-  position: absolute;
-  bottom: 18px;
-  left: 50%;
-  transform: translateX(-50%);
-  background: rgba(255, 255, 255, 0.92);
-  color: var(--primary-color-dark);
-  padding: 0.65rem 1.6rem;
-  border-radius: 999px;
-  font-weight: 600;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.4rem;
-  z-index: 2;
-  box-shadow: 0 12px 26px rgba(0, 0, 0, 0.25);
-}
-
 @media (max-width: 900px) {
   .institutional-video-grid {
     grid-template-columns: 1fr;
